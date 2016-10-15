@@ -5,7 +5,7 @@ import com.rrajath.jackdaw.service.RealmService;
 
 import javax.inject.Inject;
 
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 public class NotesPresenter implements NotesContract.Presenter {
 
@@ -21,7 +21,7 @@ public class NotesPresenter implements NotesContract.Presenter {
     @Override
     public void loadNotes() {
         notesView.showLoadingIndicator();
-        RealmResults<Note> notes = realmService.getAllNotes();
+        RealmList<Note> notes = realmService.getAllNotes();
         if (notes.size() == 0) {
             notesView.showNoNotesMessage();
         } else {
@@ -36,8 +36,8 @@ public class NotesPresenter implements NotesContract.Presenter {
     }
 
     @Override
-    public void removeItem(int position) {
-        RealmResults<Note> notes = realmService.getAllNotes();
+    public void removeNote(int position) {
+        RealmList<Note> notes = realmService.getAllNotes();
         Note note = notes.get(position);
         realmService.deleteNote(note);
         notesView.updateListItems();
@@ -45,7 +45,7 @@ public class NotesPresenter implements NotesContract.Presenter {
 
     @Override
     public boolean isListEmpty() {
-        RealmResults<Note> notes = realmService.getAllNotes();
+        RealmList<Note> notes = realmService.getAllNotes();
         return notes.isEmpty();
     }
 

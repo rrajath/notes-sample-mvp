@@ -4,13 +4,13 @@ import com.rrajath.jackdaw.BasePresenter;
 import com.rrajath.jackdaw.BaseView;
 import com.rrajath.jackdaw.data.model.Note;
 
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 public interface NotesContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showNotes(RealmResults<Note> notes);
+        void showNotes(RealmList<Note> notes);
 
         void showAddNote();
 
@@ -35,7 +35,7 @@ public interface NotesContract {
 
         void addNote();
 
-        void removeItem(int position);
+        void removeNote(int position);
 
         boolean isListEmpty();
 

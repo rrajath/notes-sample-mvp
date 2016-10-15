@@ -24,7 +24,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 public class NotesActivity extends BaseActivity implements NotesContract.View {
 
@@ -77,7 +77,7 @@ public class NotesActivity extends BaseActivity implements NotesContract.View {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                presenter.removeItem(position);
+                presenter.removeNote(position);
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
@@ -105,7 +105,7 @@ public class NotesActivity extends BaseActivity implements NotesContract.View {
     }
 
     @Override
-    public void showNotes(RealmResults<Note> notes) {
+    public void showNotes(RealmList<Note> notes) {
         hideNoNotesMessage();
         adapter = new NotesAdapter(notesItemListener);
         adapter.setNotes(notes);

@@ -3,6 +3,7 @@ package com.rrajath.jackdaw.service;
 import com.rrajath.jackdaw.data.model.Note;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class RealmService {
@@ -17,8 +18,11 @@ public class RealmService {
         realm.close();
     }
 
-    public RealmResults<Note> getAllNotes() {
-        return realm.where(Note.class).findAll();
+    public RealmList<Note> getAllNotes() {
+        RealmResults<Note> results = realm.where(Note.class).findAll();
+        RealmList<Note> notes = new RealmList<>();
+        notes.addAll(results.subList(0, results.size()));
+        return notes;
     }
 
     public void saveNote(Note note) {

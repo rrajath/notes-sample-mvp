@@ -17,11 +17,11 @@ import com.rrajath.jackdaw.util.ColorConstants;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
-    private RealmResults<Note> notes;
+    private RealmList<Note> notes;
     private NotesActivity.NotesItemListener notesItemListener;
 
     public NotesAdapter(NotesActivity.NotesItemListener notesItemListener) {
@@ -56,7 +56,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return notes.size();
     }
 
-    public void setNotes(final RealmResults<Note> notes) {
+    public void setNotes(final RealmList<Note> notes) {
         this.notes = notes;
     }
 
