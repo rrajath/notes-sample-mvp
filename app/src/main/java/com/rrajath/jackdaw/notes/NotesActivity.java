@@ -121,6 +121,8 @@ public class NotesActivity extends BaseActivity implements NotesContract.View {
     @Override
     public void showNoteDetails(Note note) {
         Intent intent = new Intent(this, NoteDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("noteTitle", note.title);
         intent.putExtra("noteDesc", note.description);
         startActivity(intent);
@@ -128,7 +130,7 @@ public class NotesActivity extends BaseActivity implements NotesContract.View {
 
     @Override
     protected void onResume() {
-        presenter.loadNotes();
+//        presenter.loadNotes();
         super.onResume();
     }
 
